@@ -1,0 +1,24 @@
+
+server:
+  port: ${SERVER_PORT:8080}
+spring:
+  profiles:
+    active: ${ENVIRONMENT:local}
+  application:
+    name: desafio
+    endpoint:
+      client.url: "http://localhost:8080/mock-api"
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_SERVICE_NAME:angelcrisostomo}?currentSchema=${SCHEMA_NAME:public}&ssl=false
+    username: ${DATABASE_USERNAME:angelcrisostomo}
+    password: ${DATABASE_PASSWORD:}
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      maximum-pool-size: 5

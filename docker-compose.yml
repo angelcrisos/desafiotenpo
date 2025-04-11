@@ -1,0 +1,24 @@
+
+services:
+  backend:
+    container_name: desafio-app
+    image: desafio-java:1.0.0
+    build: .
+    ports:
+      - 8080:8080
+    environment: 
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_SERVICE_NAME=postgres
+      - DATABASE_USERNAME=postgres
+      - SCHEMA_NAME=public
+      - DATABASE_PASSWORD=postgres
+    depends_on:
+      - postgres
+  postgres:
+    container_name: desafio-db
+    image: postgres:16
+    environment:
+      POSTGRES_USERNAME: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
